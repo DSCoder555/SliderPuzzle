@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            border: 5px solid black;
+            height: 60px;
+            width: 100px;
+            margin: 10px;
+        }
+        #reset{
+            border: none;
+            color: green;
+        }
+    </style>
+    <script>
+        moves = 0;
+        pieces = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0]
+        function finished(){
+            for(i = 0; i < 15; i++){
+                if(pieces[i] != i+1){
+                    return true;
+                }
+            }
+            return false;
+        }
+ 
+        function display(){
+            for(i = 1; i < 16; i++){
+                document.getElementById(i+1).innerHTML = pieces[i];
+            }
+            document.getElementById("counter").innerHTML = moves;
+        }
+ 
+        function nextTo(pos, zero){
+            if((Math.floor(pos/4) == Math.floor(zero/4)-1 || Math.floor(pos/4) == Math.floor(zero/4)+1 || Math.floor(pos/4) == Math.floor(zero/4)) || (pos%4 == (zero%4)-1 || pos%4 == (zero%4)+1 )){
+                temp = pieces[pos];
+                pieces[pos] = pieces[zero];
+                pieces[zero] = pieces[temp];
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        function clicked(pos){
+            if(nextTo(pos, pieces.indexOf(0))){
+                moves ++;
+                display();
+                console.log("Test Passed");
+            }
+            else{
+                console.log("Test Failed");
+            }
+        }
+    </script>
+</head>
+<body onload="display();">
+    <h1>Welcome to the Sliding Puzzle!</h1>
+    <button id="1" onclick="clicked(0);">1</button>
+    <button id="2" onclick="clicked(1);">2</button>
+    <button id="3" onclick="clicked(2);">3</button>
+    <button id="4" onclick="clicked(3);">4</button>
+    <br>
+    <button id="5" onclick="clicked(4);">5</button>
+    <button id="6" onclick="clicked(5);">6</button>
+    <button id="7" onclick="clicked(6);">7</button>
+    <button id="8" onclick="clicked(7);">8</button>
+    <br>
+    <button id="9" onclick="clicked(8);">9</button>
+    <button id="10" onclick="clicked(9);">10</button>
+    <button id="11" onclick="clicked(10);">11</button>
+    <button id="12" onclick="clicked(11);">12</button>
+    <br>
+    <button id="13" onclick="clicked(12);">13</button>
+    <button id="14" onclick="clicked(13);">14</button>
+    <button id="15" onclick="clicked(14);">15</button>
+    <button id="16" onclick="clicked(15);">16</button>
+    <div>Counter: <span id="counter">0</span></div>
+    <button id="reset" onclick="set();">Reset</button>
+    <div id="display"></div>
+</body>
+</html>
+
