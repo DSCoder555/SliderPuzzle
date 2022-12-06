@@ -11,36 +11,72 @@
             height: 60px;
             width: 100px;
             margin: 10px;
+            font-size: 15px;
         }
         #reset{
             border: none;
             color: green;
         }
+        #shuffle{
+            border: none;
+            color: red;
+        }
     </style>
     <script>
         moves = 0;
-        pieces = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0]
+        done = false;
+        pieces = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
+
+        
         function finished(){
             for(i = 0; i < 15; i++){
                 if(pieces[i] != i+1){
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            return true;
+        }
+
+        function set(){
+            moves = 0;
+            done = false;
+            pieces = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
+            document.getElementById("display").innerHTML = "";
+            display();
         }
  
         function display(){
-            for(i = 1; i < 16; i++){
+            for(i = 0; i < 16; i++){
                 document.getElementById(i+1).innerHTML = pieces[i];
             }
             document.getElementById("counter").innerHTML = moves;
         }
+
+        function shuffle(){
+            while(finished()){
+                for(i = 0; i < 1000; i++){
+                    console.log("test");
+                    shuffled = false;
+                    while(!shuffled){
+                        shuffled = nextTo(Math.floor(Math.random() * 16));
+                    }
+                }
+            }
+            display();
+        }
  
-        function nextTo(pos, zero){
-            if((Math.floor(pos/4) == Math.floor(zero/4)-1 || Math.floor(pos/4) == Math.floor(zero/4)+1 || Math.floor(pos/4) == Math.floor(zero/4)) || (pos%4 == (zero%4)-1 || pos%4 == (zero%4)+1 )){
-                temp = pieces[pos];
-                pieces[pos] = pieces[zero];
-                pieces[zero] = pieces[temp];
+        function nextTo(pos){
+            zero = pieces.indexOf(0);
+            if(pos==zero){
+                return false;
+            }
+            if((Math.floor(pos/4) != Math.floor(zero/4))&&(pos%4 != (zero%4))){
+                return false;
+            }
+            if(Math.floor(pos/4) == Math.floor(zero/4)-1 || Math.floor(pos/4) == Math.floor(zero/4)+1 || (pos%4 == (zero%4)-1 || pos%4 == (zero%4)+1 )){
+                
+                pieces[zero] = pieces[pos];
+                pieces[pos] = 0;
                 return true;
             }
             else{
@@ -48,13 +84,13 @@
             }
         }
         function clicked(pos){
-            if(nextTo(pos, pieces.indexOf(0))){
+            if(nextTo(pos)){
                 moves ++;
                 display();
-                console.log("Test Passed");
-            }
-            else{
-                console.log("Test Failed");
+                if(finished() && ! done){
+                    done = true;
+                    document.getElementById("display").innerHTML = "Congrats. You solved this puzzle in " + moves + " moves."
+                }
             }
         }
     </script>
@@ -82,6 +118,7 @@
     <button id="16" onclick="clicked(15);">16</button>
     <div>Counter: <span id="counter">0</span></div>
     <button id="reset" onclick="set();">Reset</button>
+    <button id="shuffle" onclick="shuffle();">Shuffle</button>
     <div id="display"></div>
 </body>
 </html>
