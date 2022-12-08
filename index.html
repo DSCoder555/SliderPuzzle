@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Slider Puzzle</title>
     <style>
         .grid{
@@ -24,16 +23,6 @@
             margin: 1px;
             font-size: 20px;
             font-weight: 800;
-=======
-    <title>Document</title>
-    <style>
-        button{
-            border: 5px solid black;
-            height: 60px;
-            width: 100px;
-            margin: 10px;
-            font-size: 15px;
->>>>>>> b0005a760ba63e2b94d2821141bc9be291828de3
         }
         #reset{
             border: none;
@@ -46,11 +35,7 @@
     </style>
     <script>
         moves = 0;
-<<<<<<< HEAD
         done = true;
-=======
-        done = false;
->>>>>>> b0005a760ba63e2b94d2821141bc9be291828de3
         pieces = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
 
         
@@ -73,7 +58,6 @@
  
         function display(){
             for(i = 0; i < 16; i++){
-<<<<<<< HEAD
                 if(pieces[i] == 0){
                     document.getElementById(i+1).innerHTML = " ";
                     document.getElementById(i+1).style.backgroundImage = "";
@@ -90,9 +74,6 @@
                     }
                 }
                 
-=======
-                document.getElementById(i+1).innerHTML = pieces[i];
->>>>>>> b0005a760ba63e2b94d2821141bc9be291828de3
             }
             document.getElementById("counter").innerHTML = moves;
         }
@@ -141,7 +122,6 @@
     </script>
 </head>
 <body onload="display();">
-<<<<<<< HEAD
     <h1 style="text-align:center">Welcome to the Sliding Puzzle!</h1>
     <h2 style="text-align:center">Shuffle the puzzle and use the empty space to move all the pieces back into place.  Click on a piece to move it.</h2>
     <div class="grid">
@@ -168,32 +148,6 @@
         <button style="text-align:center" id="shuffle" onclick="shuffle();">Shuffle</button>
     </div>
     <div style="text-align:center" id="display"></div>
-=======
-    <h1>Welcome to the Sliding Puzzle!</h1>
-    <button id="1" onclick="clicked(0);">1</button>
-    <button id="2" onclick="clicked(1);">2</button>
-    <button id="3" onclick="clicked(2);">3</button>
-    <button id="4" onclick="clicked(3);">4</button>
-    <br>
-    <button id="5" onclick="clicked(4);">5</button>
-    <button id="6" onclick="clicked(5);">6</button>
-    <button id="7" onclick="clicked(6);">7</button>
-    <button id="8" onclick="clicked(7);">8</button>
-    <br>
-    <button id="9" onclick="clicked(8);">9</button>
-    <button id="10" onclick="clicked(9);">10</button>
-    <button id="11" onclick="clicked(10);">11</button>
-    <button id="12" onclick="clicked(11);">12</button>
-    <br>
-    <button id="13" onclick="clicked(12);">13</button>
-    <button id="14" onclick="clicked(13);">14</button>
-    <button id="15" onclick="clicked(14);">15</button>
-    <button id="16" onclick="clicked(15);">16</button>
-    <div>Counter: <span id="counter">0</span></div>
-    <button id="reset" onclick="set();">Reset</button>
-    <button id="shuffle" onclick="shuffle();">Shuffle</button>
-    <div id="display"></div>
->>>>>>> b0005a760ba63e2b94d2821141bc9be291828de3
 </body>
 </html>
 
